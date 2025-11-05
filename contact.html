@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | MMV-LUCAS - Maintenance & Repair Services</title>
+    <link rel="icon" href="assets/MMvLogo.png" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #d4af37, #f4e5b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #d4af37;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #d4af37;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: #d4af37;
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .contact-hero {
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+background: 
+    linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.9)),
+    url('./assets/hero6.png') center/cover;            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-30px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #d4af37, #f4e5b8, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s ease-in-out infinite;
+            background-size: 200% auto;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: #d4af37;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+        }
+
+        /* Contact Layout */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        /* Contact Information */
+        .contact-info {
+            background: linear-gradient(145deg, #1a1a1a, #151515);
+            padding: 3rem;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .info-icon {
+            font-size: 1.8rem;
+            margin-right: 1.5rem;
+            color: #d4af37;
+            min-width: 40px;
+        }
+
+        .info-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #d4af37;
+        }
+
+        .info-content p {
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        .info-content a {
+            color: #d4af37;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-content a:hover {
+            color: #f4e5b8;
+        }
+
+        /* Emergency Banner */
+        .emergency-banner {
+            background: linear-gradient(135deg, #d4af37, #c4a037);
+            color: #0a0a0a;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .emergency-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+        }
+
+        .emergency-banner h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .emergency-banner p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .emergency-phone {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .emergency-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: #0a0a0a;
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .emergency-button:hover {
+            background: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Contact Form */
+        .contact-form-container {
+            background: linear-gradient(145deg, #1a1a1a, #151515);
+            padding: 3rem;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            color: #d4af37;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background: #0a0a0a;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            color: #e0e0e0;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #d4af37, #c4a037);
+            color: #0a0a0a;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Map Section */
+        .map-section {
+            margin-top: 4rem;
+        }
+
+        .map-container {
+            background: linear-gradient(145deg, #1a1a1a, #151515);
+            height: 400px;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0a0a0a;
+            color: #d4af37;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 6rem;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .faq-item {
+            background: linear-gradient(145deg, #1a1a1a, #151515);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .faq-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #d4af37;
+        }
+
+        .faq-item p {
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-section h3 {
+            color: #d4af37;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #888;
+            line-height: 1.6;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #d4af37;
+        }
+
+        .copyright {
+            color: #888;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .contact-layout {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-info, .contact-form-container {
+                padding: 2rem;
+            }
+
+            .info-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .info-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo"><a><img src="assets/MMvLogo.png" height="80" width="80"></a></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="contact-hero">
+        <div class="hero-content">
+            <h1>Contact Us</h1>
+            <p>Get in touch with our team to discuss your maintenance and repair needs. We're here to help!</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">We're ready to assist with all your maintenance and repair requirements</p>
+        
+        <div class="contact-layout">
+            <div class="contact-info">
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-content">
+                        <h3>Our Location</h3>
+                        <p>
+                            MMV-Lucas<br>
+                            House 2352 Rievaasmak Street<br>
+                            Dibeng, Northern Cape 8463<br>
+                            Republic of South Africa
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">📞</div>
+                    <div class="info-content">
+                        <h3>Phone Numbers</h3>
+                        <p>
+                            <strong>Main Office:</strong> <a href="tel:+27123456789">+27 12 345 6789</a><br>
+                            <strong>Emergency Line:</strong> <a href="tel:+27831234567">+27 83 123 4567</a><br>
+                            <strong>Fax:</strong> +27 86 123 4567
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">✉️</div>
+                    <div class="info-content">
+                        <h3>Email Addresses</h3>
+                        <p>
+                            <strong>General Inquiries:</strong> <a href="mailto:info@mmv-lucas.co.za">info@mmv-lucas.co.za</a><br>
+                            <strong>Service Requests:</strong> <a href="mailto:services@mmv-lucas.co.za">services@mmv-lucas.co.za</a><br>
+                            <strong>Emergency:</strong> <a href="mailto:emergency@mmv-lucas.co.za">emergency@mmv-lucas.co.za</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">🕒</div>
+                    <div class="info-content">
+                        <h3>Business Hours</h3>
+                        <p>
+                            <strong>Monday - Friday:</strong> 8:00 AM - 5:00 PM<br>
+                            <strong>Saturday:</strong> 9:00 AM - 1:00 PM<br>
+                            <strong>Sunday:</strong> Closed<br>
+                            <strong>Emergency Services:</strong> 24/7 Available
+                        </p>
+                    </div>
+                </div>
+
+                <div class="emergency-banner">
+                    <h3>24/7 Emergency Services</h3>
+                    <p>For urgent repair needs outside business hours</p>
+                    <div class="emergency-phone">+27 83 123 4567</div>
+                    <a href="tel:+27831234567" class="emergency-button">Call Emergency Line</a>
+                </div>
+            </div>
+
+            <div class="contact-form-container">
+                <h3 style="color: #d4af37; margin-bottom: 2rem; font-size: 1.8rem;">Send Us a Message</h3>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service">Service Needed *</label>
+                        <select id="service" name="service" required>
+                            <option value="">Select a service</option>
+                            <option value="emergency">24/7 Emergency Repair</option>
+                            <option value="supply">Supply Chain Management</option>
+                            <option value="landscaping">Landscaping & Groundskeeping</option>
+                            <option value="distribution">Strategic Distribution</option>
+                            <option value="maintenance">Preventive Maintenance</option>
+                            <option value="facility">Facility Management</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="urgency">Urgency Level</label>
+                        <select id="urgency" name="urgency">
+                            <option value="standard">Standard Request</option>
+                            <option value="urgent">Urgent (Within 24 hours)</option>
+                            <option value="emergency">Emergency (Immediate)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" placeholder="Please describe your maintenance or repair needs in detail..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section">
+        <h2 class="section-title">Our Location</h2>
+        <p class="section-subtitle">Visit our office or get directions</p>
+        
+        <div class="map-container">
+            <div class="map-placeholder">
+                <div>
+                    <h3>MMV-LUCAS Location</h3>
+                    <p>House 2352 Rievaasmak Street, Dibeng, Northern Cape 8463</p>
+                    <p style="margin-top: 1rem;">Interactive map would be integrated here</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Quick answers to common questions about our services</p>
+        
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h3>How quickly can you respond to emergency repair requests?</h3>
+                <p>Our emergency response team aims to be on-site within 2 hours of your call for critical issues. Response times may vary based on location and current workload.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Do you offer preventive maintenance contracts?</h3>
+                <p>Yes, we offer customized preventive maintenance contracts tailored to your specific equipment and facility needs. These help prevent unexpected breakdowns and extend asset lifespan.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>What areas do you serve?</h3>
+                <p>We primarily serve the Northern Cape region with our maintenance and repair services. For supply chain and distribution services, we operate throughout South Africa.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Are your technicians certified and insured?</h3>
+                <p>Yes, all our technicians are properly certified for their respective trades and fully insured. We maintain high standards for both technical competence and safety.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>How do you handle after-hours emergencies?</h3>
+                <p>We have a dedicated 24/7 emergency hotline for urgent repair needs. Our on-call technicians are available around the clock to address critical issues.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Can you provide references from past clients?</h3>
+                <p>Absolutely. We're proud of our track record and can provide references from satisfied clients across various industries upon request.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <p>House 2352 Rievaasmak Street</p>
+                <p>Dibeng, Northern Cape 8463</p>
+                <p>South Africa</p>
+                <a href="tel:+27123456789">+27 12 345 6789</a>
+                <a href="mailto:info@mmv-lucas.co.za">info@mmv-lucas.co.za</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Our Services</h3>
+                <a href="services.html#emergency">24/7 Emergency Repair</a>
+                <a href="services.html#supply">Supply Chain Management</a>
+                <a href="services.html#landscaping">Landscaping & Groundskeeping</a>
+                <a href="services.html#distribution">Strategic Distribution</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Services</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Certifications</h3>
+                <p>B-BBEE Level 1 Contributor</p>
+                <p>100% Black Owned</p>
+                <p>Registered Company</p>
+                <p>Fully Insured</p>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2025 MMV-LUCAS (PTY) LTD. All rights reserved. | Registration Number: 2023/283943/07</p>
+        </div>
+    </footer>
+
+    <script>
+        // Form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const service = formData.get('service');
+            
+            // Show success message
+            alert(`Thank you ${name}! Your ${service} request has been submitted. We will contact you within 24 hours.`);
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 10, 10, 0.98)';
+            } else {
+                nav.style.background = 'rgba(10, 10, 10, 0.95)';
+            }
+        });
+
+        // Add animation to FAQ items on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe FAQ items for animation
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>

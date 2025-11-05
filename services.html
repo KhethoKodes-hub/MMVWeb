@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | MMV-LUCAS - Maintenance & Repair Services</title>
+        <link rel="icon" href="assets/MMvLogo.png" type="image/x-icon">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #d4af37, #f4e5b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #d4af37;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #d4af37;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: #d4af37;
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .services-hero {
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+background: 
+    linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.9)),
+    url('./assets/hero5.png') center/cover;            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .services-hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-30px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #d4af37, #f4e5b8, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s ease-in-out infinite;
+            background-size: 200% auto;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: #d4af37;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, #1a1a1a, #151515);
+            padding: 3rem;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #d4af37;
+        }
+
+        .service-card p {
+            color: #b0b0b0;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .service-features li {
+            color: #b0b0b0;
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #d4af37;
+            font-weight: bold;
+        }
+
+        .service-cta {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            border: 1px solid #d4af37;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .service-cta:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Emergency Services Banner */
+        .emergency-banner {
+            background: linear-gradient(135deg, #d4af37, #c4a037);
+            color: #0a0a0a;
+            padding: 3rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .emergency-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+        }
+
+        .emergency-banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .emergency-banner p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .emergency-phone {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .emergency-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #0a0a0a;
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .emergency-button:hover {
+            background: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Process Section */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            background: linear-gradient(145deg, #1a1a1a, #151515);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #d4af37, #c4a037);
+            color: #0a0a0a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        .process-step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #d4af37;
+        }
+
+        .process-step p {
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        /* Industries Served */
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .industry-item {
+            background: linear-gradient(145deg, #1a1a1a, #151515);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .industry-item:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .industry-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .industry-item h3 {
+            font-size: 1.2rem;
+            color: #d4af37;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(145deg, #1a1a1a, #151515);
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #d4af37, #c4a037);
+            color: #0a0a0a;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            margin-top: 1.5rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+            background: linear-gradient(135deg, #e4bf47, #d4af37);
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .address {
+            margin-bottom: 1.5rem;
+            color: #888;
+            line-height: 1.6;
+        }
+
+        footer p {
+            color: #888;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .industries-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .emergency-banner h2 {
+                font-size: 2rem;
+            }
+
+            .emergency-phone {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .industries-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo"><a><img src="assets/MMvLogo.png" height="80" width="80"></a></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="services-hero">
+        <div class="hero-content">
+            <h1>Our Services</h1>
+            <p>Comprehensive maintenance and repair solutions tailored to meet your unique needs with reliability and excellence.</p>
+        </div>
+    </section>
+
+    <section id="main-services">
+        <h2 class="section-title">Our Core Services</h2>
+        <p class="section-subtitle">Professional solutions for all your maintenance and repair requirements</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <span class="service-icon">🚨</span>
+                <h3>24/7 Emergency Repair</h3>
+                <p>We provide round-the-clock emergency repair services to address unexpected equipment failures, minimizing downtime and preventing further damage to your assets.</p>
+                <ul class="service-features">
+                    <li>Rapid response team available 24/7</li>
+                    <li>Minimize operational downtime</li>
+                    <li>Prevent further damage to equipment</li>
+                    <li>Expert troubleshooting and diagnostics</li>
+                    <li>Temporary solutions to restore operations</li>
+                </ul>
+                <a href="contact.html" class="service-cta">Request Emergency Service</a>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">📦</span>
+                <h3>Supply Chain Management</h3>
+                <p>We offer end-to-end supply chain management solutions, ensuring a seamless flow of goods from production to delivery with precision and efficiency.</p>
+                <ul class="service-features">
+                    <li>End-to-end supply chain solutions</li>
+                    <li>Inventory management and optimization</li>
+                    <li>Logistics coordination</li>
+                    <li>Supplier relationship management</li>
+                    <li>Quality control throughout the process</li>
+                </ul>
+                <a href="contact.html" class="service-cta">Discuss Your Supply Needs</a>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">🌳</span>
+                <h3>Landscaping & Groundskeeping</h3>
+                <p>We maintain outdoor spaces by providing comprehensive landscaping and groundskeeping services, including lawn care, tree maintenance, and exterior facility upkeep.</p>
+                <ul class="service-features">
+                    <li>Professional lawn care and maintenance</li>
+                    <li>Tree and shrub maintenance</li>
+                    <li>Seasonal planting and flower beds</li>
+                    <li>Irrigation system maintenance</li>
+                    <li>Exterior facility upkeep</li>
+                </ul>
+                <a href="contact.html" class="service-cta">Schedule Groundskeeping</a>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">🚚</span>
+                <h3>Strategic Distribution</h3>
+                <p>We excel in the strategic distribution of goods, optimizing transportation and logistics to reach destinations with precision, timeliness, and cost efficiency.</p>
+                <ul class="service-features">
+                    <li>Optimized transportation planning</li>
+                    <li>Route optimization and management</li>
+                    <li>Warehousing and storage solutions</li>
+                    <li>Last-mile delivery coordination</li>
+                    <li>Real-time tracking and reporting</li>
+                </ul>
+                <a href="contact.html" class="service-cta">Optimize Your Distribution</a>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">🔧</span>
+                <h3>Preventive Maintenance</h3>
+                <p>Our proactive maintenance programs help prevent equipment failures before they occur, extending asset lifespan and reducing unexpected downtime.</p>
+                <ul class="service-features">
+                    <li>Scheduled maintenance programs</li>
+                    <li>Equipment inspections and assessments</li>
+                    <li>Predictive maintenance technologies</li>
+                    <li>Maintenance planning and scheduling</li>
+                    <li>Performance monitoring and reporting</li>
+                </ul>
+                <a href="contact.html" class="service-cta">Schedule Maintenance</a>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">🏢</span>
+                <h3>Facility Management</h3>
+                <p>Comprehensive facility management services to ensure your buildings and infrastructure remain in optimal condition, safe, and fully functional.</p>
+                <ul class="service-features">
+                    <li>Building systems maintenance</li>
+                    <li>HVAC system servicing</li>
+                    <li>Electrical and plumbing maintenance</li>
+                    <li>Safety and compliance inspections</li>
+                    <li>Space utilization optimization</li>
+                </ul>
+                <a href="contact.html" class="service-cta">Manage Your Facilities</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="emergency-banner">
+        <h2>24/7 Emergency Services</h2>
+        <p>Equipment failure doesn't wait for business hours. Our emergency response team is available around the clock to address your urgent repair needs.</p>
+        <div class="emergency-phone">Call Now: (XXX) XXX-XXXX</div>
+        <a href="tel:XXXXXXXXXX" class="emergency-button">Call Emergency Hotline</a>
+    </div>
+
+    <section id="our-process">
+        <h2 class="section-title">Our Service Process</h2>
+        <p class="section-subtitle">A systematic approach to delivering exceptional maintenance and repair services</p>
+        
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>Assessment</h3>
+                <p>We begin with a thorough assessment of your needs, equipment, or facilities to understand the scope of work required.</p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>Planning</h3>
+                <p>Our experts develop a detailed plan outlining the approach, timeline, and resources needed for your project.</p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>Execution</h3>
+                <p>We execute the plan with precision, using quality materials and following industry best practices and safety standards.</p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>Quality Check</h3>
+                <p>Every project undergoes rigorous quality checks to ensure it meets our high standards and your expectations.</p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">5</div>
+                <h3>Follow-up</h3>
+                <p>We conduct follow-up assessments to ensure ongoing performance and address any post-service needs.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="industries">
+        <h2 class="section-title">Industries We Serve</h2>
+        <p class="section-subtitle">Our maintenance and repair expertise spans across multiple sectors</p>
+        
+        <div class="industries-grid">
+            <div class="industry-item">
+                <span class="industry-icon">🏭</span>
+                <h3>Manufacturing</h3>
+            </div>
+
+            <div class="industry-item">
+                <span class="industry-icon">🏢</span>
+                <h3>Commercial</h3>
+            </div>
+
+            <div class="industry-item">
+                <span class="industry-icon">🏥</span>
+                <h3>Healthcare</h3>
+            </div>
+
+            <div class="industry-item">
+                <span class="industry-icon">🎓</span>
+                <h3>Education</h3>
+            </div>
+
+            <div class="industry-item">
+                <span class="industry-icon">🏨</span>
+                <h3>Hospitality</h3>
+            </div>
+
+            <div class="industry-item">
+                <span class="industry-icon">🛍️</span>
+                <h3>Retail</h3>
+            </div>
+
+            <div class="industry-item">
+                <span class="industry-icon">🏗️</span>
+                <h3>Construction</h3>
+            </div>
+
+            <div class="industry-item">
+                <span class="industry-icon">⚡</span>
+                <h3>Utilities</h3>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta">
+        <div class="cta-section">
+            <h2>Ready to Get Started?</h2>
+            <p>Contact us today to discuss your maintenance and repair needs. Our team of experts is ready to provide you with tailored solutions that deliver results.</p>
+            <a href="contact.html" class="cta-button">Request a Quote</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="address">
+            <strong>MMV-Lucas</strong><br>
+            House 2352 Rievaasmak Street<br>
+            Dibeng, Northern Cape 8463<br>
+            Republic of South Africa
+        </div>
+        <p>&copy; 2025 MMV-LUCAS (PTY) LTD. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 10, 10, 0.98)';
+            } else {
+                nav.style.background = 'rgba(10, 10, 10, 0.95)';
+            }
+        });
+
+        // Add animation to service cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe service cards for animation
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

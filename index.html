@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMV-LUCAS | Maintenance & Repair Services</title>
+        <link rel="icon" href="assets/MMvLogo.png" type="image/x-icon">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #d4af37, #f4e5b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #d4af37;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #d4af37;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: 
+    linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.9)),
+    url('./assets/hero2.png') center/cover;
+            overflow: hidden;
+        }
+
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-30px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #d4af37, #f4e5b8, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s ease-in-out infinite;
+            background-size: 200% auto;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #b0b0b0;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #d4af37, #c4a037);
+            color: #0a0a0a;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+            background: linear-gradient(135deg, #e4bf47, #d4af37);
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: #d4af37;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, #1a1a1a, #151515);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #d4af37;
+        }
+
+        .service-card p {
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: #d4af37;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            color: #b0b0b0;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .value-box {
+            background: linear-gradient(145deg, #1a1a1a, #151515);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .value-box:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            transform: scale(1.05);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .value-label {
+            color: #d4af37;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* B-BBEE Section */
+        .bbee-section {
+            background: linear-gradient(145deg, #1a1a1a, #151515);
+            padding: 4rem;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .bbee-badge {
+            background: linear-gradient(135deg, #d4af37, #c4a037);
+            color: #0a0a0a;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .bbee-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .bbee-detail {
+            background: #0a0a0a;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .bbee-detail h4 {
+            color: #d4af37;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            background: linear-gradient(145deg, #1a1a1a, #151515);
+            padding: 4rem;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            color: #d4af37;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background: #0a0a0a;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            color: #e0e0e0;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #d4af37, #c4a037);
+            color: #0a0a0a;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .address {
+            margin-bottom: 1.5rem;
+            color: #888;
+            line-height: 1.6;
+        }
+
+        footer p {
+            color: #888;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bbee-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo"><a><img src="assets/MMvLogo.png" height="80" width="80"></a></div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <!--<li><a href="#bbee">B-BBEE</a></li>-->
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>MMV-LUCAS</h1>
+            <p>Dedicated to delivering top-notch maintenance and repair solutions tailored to meet the unique needs of our clients. With a commitment to reliability, innovation, and customer satisfaction.</p>
+            <a href="contact.html" class="cta-button">Request Service</a>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-subtitle">Comprehensive maintenance and repair solutions for all your needs</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <span class="service-icon">🚨</span>
+                <h3>24/7 Emergency Repair</h3>
+                <p>Provide 24/7 emergency repair services to address unexpected equipment failures, minimizing downtime and preventing further damage.</p>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">📦</span>
+                <h3>Supply Chain Management</h3>
+                <p>We offer end-to-end supply chain management solutions, ensuring a seamless flow of goods from production to delivery.</p>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">🌳</span>
+                <h3>Landscaping & Groundskeeping</h3>
+                <p>Maintain outdoor spaces by providing landscaping and groundskeeping services, including lawn care, tree maintenance, and exterior facility upkeep.</p>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">🚚</span>
+                <h3>Strategic Distribution</h3>
+                <p>We excel in the strategic distribution of goods, optimizing transportation and logistics to reach destinations with precision and timeliness.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>About MMV-LUCAS</h2>
+                <p>At MMV-Lucas, we are dedicated to delivering top-notch supply solutions tailored to meet the unique needs of our clients. With a commitment to reliability, innovation, and customer satisfaction, we have established ourselves as a trusted name in the supply industry.</p>
+                <p>Welcome to MMV-Lucas, where excellence meets reliability in repair and maintenance services. With a commitment to quality craftsmanship and customer satisfaction, we specialize in providing comprehensive solutions for all your repair and maintenance needs.</p>
+            </div>
+
+            <div class="values-grid">
+                <div class="value-box">
+                    <span class="value-icon">⭐</span>
+                    <div class="value-label">Quality</div>
+                    <p>We are dedicated to delivering service and maintenance solutions of the highest quality.</p>
+                </div>
+                <div class="value-box">
+                    <span class="value-icon">🤝</span>
+                    <div class="value-label">Integrity</div>
+                    <p>Our commitment to honesty, transparency, and ethical conduct is unwavering.</p>
+                </div>
+                <div class="value-box">
+                    <span class="value-icon">👥</span>
+                    <div class="value-label">Customer Focus</div>
+                    <p>We prioritize the needs and satisfaction of our clients above all else.</p>
+                </div>
+                <div class="value-box">
+                    <span class="value-icon">🛡️</span>
+                    <div class="value-label">Safety</div>
+                    <p>The safety of our employees, clients, and the community is our top priority.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="bbee">
+        <h2 class="section-title">B-BBEE Certification</h2>
+        <p class="section-subtitle">Committed to economic transformation and empowerment</p>
+        
+        <div class="bbee-section">
+            <div class="bbee-badge">B-BBEE LEVEL 1 CONTRIBUTOR</div>
+            <h3>135% Procurement Recognition</h3>
+            <p>MMV-LUCAS (PTY) LTD is proudly 100% Black-owned with B-BBEE Level 1 status.</p>
+            
+            <div class="bbee-details">
+                <div class="bbee-detail">
+                    <h4>Black Ownership</h4>
+                    <p>100%</p>
+                </div>
+                <div class="bbee-detail">
+                    <h4>Certificate Number</h4>
+                    <p>9424051625</p>
+                </div>
+                <div class="bbee-detail">
+                    <h4>Issue Date</h4>
+                    <p>06-January-2025</p>
+                </div>
+                <div class="bbee-detail">
+                    <h4>Expiry Date</h4>
+                    <p>05-January-2026</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">Let's discuss how we can serve your maintenance and repair needs</p>
+        
+        <div class="contact-container">
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company" name="company">
+                </div>
+
+                <div class="form-group">
+                    <label for="service">Service Needed</label>
+                    <select id="service" name="service" required>
+                        <option value="">Select a service</option>
+                        <option value="emergency">Emergency Repair</option>
+                        <option value="supply">Supply Chain Management</option>
+                        <option value="landscaping">Landscaping & Groundskeeping</option>
+                        <option value="distribution">Strategic Distribution</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-button">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="address">
+            <strong>MMV-Lucas</strong><br>
+            House 2352 Rievaasmak Street<br>
+            Dibeng, Northern Cape 8463<br>
+            Republic of South Africa
+        </div>
+        <p>&copy; 2025 MMV-LUCAS (PTY) LTD. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 10, 10, 0.98)';
+            } else {
+                nav.style.background = 'rgba(10, 10, 10, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
